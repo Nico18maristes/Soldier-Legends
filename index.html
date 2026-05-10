@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soldiers Legends</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@400;700;900&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: radial-gradient(ellipse at 50% 40%, #1a0050 0%, #0a0015 70%);
+    min-height: 100vh;
+    font-family: 'Exo 2', Arial, sans-serif;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Stars */
+  #stars { position:fixed; inset:0; pointer-events:none; z-index:0; }
+  .star { position:absolute; border-radius:50%; background:#fff; animation:twinkle 3s infinite; }
+  @keyframes twinkle { 0%,100%{opacity:0.15;} 50%{opacity:0.9;} }
+
+  /* Main content */
+  .content { position:relative; z-index:1; text-align:center; display:flex; flex-direction:column; align-items:center; gap:32px; }
+
+  /* Logo */
+  .logo-eyebrow { font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:8px; color:#FF6600; text-shadow:0 0 10px #FF6600; }
+  .logo-main {
+    font-family:'Bebas Neue',sans-serif; font-size:100px; line-height:0.85; letter-spacing:4px;
+    background: linear-gradient(180deg, #fff 0%, #FFD700 40%, #FF6600 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    filter: drop-shadow(0 0 30px #FF6600);
+  }
+  .logo-sub { font-size:13px; letter-spacing:5px; color:rgba(255,255,255,0.35); margin-top:6px; text-transform:uppercase; }
+
+  /* Brawler previews */
+  .brawlers { display:flex; gap:20px; align-items:center; }
+  .brawler-chip {
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+    border-radius:12px; padding:10px 16px; display:flex; flex-direction:column; align-items:center; gap:4px;
+    transition: all 0.2s;
+  }
+  .brawler-chip:hover { background:rgba(255,215,0,0.1); border-color:rgba(255,215,0,0.4); transform:translateY(-4px); }
+  .brawler-chip .emoji { font-size:28px; }
+  .brawler-chip .name { font-family:'Bebas Neue',sans-serif; font-size:13px; letter-spacing:1px; }
+  .brawler-chip .rarity { font-size:9px; font-weight:700; letter-spacing:1px; }
+  .rarity-master { color:#FF4466; }
+  .rarity-leyenda { color:#FFD700; }
+  .rarity-raro { color:#44AAFF; }
+  .rarity-ultra { color:#FF1744; }
+
+  /* Play button */
+  .play-btn {
+    background: linear-gradient(135deg, #FF6600, #FFD700);
+    color: #000; border: none;
+    padding: 18px 64px;
+    font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:4px;
+    border-radius: 12px; cursor: pointer;
+    box-shadow: 0 6px 30px rgba(255,150,0,0.5);
+    transition: all 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .play-btn:hover { transform:scale(1.07); box-shadow:0 10px 40px rgba(255,200,0,0.7); }
+
+  /* Info cards */
+  .info-row { display:flex; gap:16px; }
+  .info-card {
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+    border-radius:12px; padding:14px 20px; text-align:center; min-width:130px;
+  }
+  .info-card-value { font-family:'Bebas Neue',sans-serif; font-size:26px; color:#FFD700; }
+  .info-card-label { font-size:10px; color:rgba(255,255,255,0.4); letter-spacing:2px; margin-top:2px; }
+
+  /* Controls hint */
+  .controls {
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+    border-radius:10px; padding:12px 24px; font-size:11px; color:rgba(255,255,255,0.4);
+    letter-spacing:0.5px; line-height:1.8;
+  }
+  .controls strong { color:rgba(255,255,255,0.7); }
+
+  /* Footer */
+  .footer { position:fixed; bottom:14px; left:0; right:0; display:flex; justify-content:space-between; padding:0 20px; font-size:11px; color:rgba(255,255,255,0.2); z-index:1; }
+
+  /* Floating decos */
+  .deco { position:fixed; font-size:52px; opacity:0.06; pointer-events:none; animation:float 6s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-20px) rotate(8deg);} }
+
+  /* Responsive */
+  @media(max-width:600px) {
+    .logo-main { font-size:64px; }
+    .brawlers { flex-wrap:wrap; justify-content:center; }
+    .info-row { flex-wrap:wrap; justify-content:center; }
+    .play-btn { padding:14px 44px; font-size:22px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<div class="deco" style="top:8%;left:6%;animation-delay:0s;">⚔️</div>
+<div class="deco" style="top:12%;right:8%;animation-delay:1.2s;font-size:38px;">🏆</div>
+<div class="deco" style="bottom:12%;left:10%;animation-delay:2s;font-size:36px;">💥</div>
+<div class="deco" style="bottom:8%;right:6%;animation-delay:0.6s;font-size:40px;">🔥</div>
+
+<div class="content">
+
+  <div>
+    <div class="logo-eyebrow">⚔ &nbsp; GRUPO TROY PRESENTS &nbsp; ⚔</div>
+    <div class="logo-main">SOLDIERS<br>LEGENDS</div>
+    <div class="logo-sub">El juego de los campeones · 2026</div>
+  </div>
+
+  <div class="brawlers">
+    <div class="brawler-chip"><span class="emoji">🤠</span><span class="name">Troy</span><span class="rarity rarity-master">MASTER</span></div>
+    <div class="brawler-chip"><span class="emoji">🐺</span><span class="name">Ragnar</span><span class="rarity rarity-leyenda">LEYENDA</span></div>
+    <div class="brawler-chip"><span class="emoji">💻</span><span class="name">Trix</span><span class="rarity rarity-raro">RARO</span></div>
+    <div class="brawler-chip"><span class="emoji">🐊</span><span class="name">Gorex</span><span class="rarity rarity-leyenda">LEYENDA</span></div>
+    <div class="brawler-chip"><span class="emoji">🤖</span><span class="name">OT-BOT</span><span class="rarity rarity-ultra">ULTRA</span></div>
+    <div class="brawler-chip"><span class="emoji">🧔</span><span class="name">Zyrox</span><span class="rarity rarity-leyenda">LEYENDA</span></div>
+  </div>
+
+  <a class="play-btn" href="soldiers_legends_game.html">⚔ &nbsp;JUGAR AHORA</a>
+
+  <div class="info-row">
+    <div class="info-card">
+      <div class="info-card-value">6</div>
+      <div class="info-card-label">BRAWLERS</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-value">2</div>
+      <div class="info-card-label">JUGADORES</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-value">1</div>
+      <div class="info-card-label">MAPA</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-value">v1.4</div>
+      <div class="info-card-label">VERSIÓN</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <strong>Jugador 1:</strong> WASD mover &nbsp;·&nbsp; F ataque &nbsp;·&nbsp; G ulti &nbsp;&nbsp;|&nbsp;&nbsp;
+    <strong>Jugador 2:</strong> ↑↓←→ mover &nbsp;·&nbsp; L ataque &nbsp;·&nbsp; ; ulti<br>
+    🌿 Arbusto = invisibilidad &nbsp;·&nbsp; 📦 Cajas destructibles &nbsp;·&nbsp; 🔥 Zona de lava que se cierra
+  </div>
+
+</div>
+
+<div class="footer">
+  <span>Grupo Troy · Mayo 2026</span>
+  <span>github.com/Nico18maristes/Soldier-Legends</span>
+</div>
+
+<script>
+  // Generate stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 100; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = 1 + Math.random() * 2.5;
+    s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${2+Math.random()*3}s;`;
+    starsEl.appendChild(s);
+  }
+</script>
+</body>
+</html>
